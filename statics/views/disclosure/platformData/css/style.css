@@ -1,0 +1,189 @@
+@charset "utf-8";
+/*
+ *name:wj
+ *time:2016.5.16
+ *content:头部样式，包含登录条及导航
+*/
+/*基本样式，页面加载共用头部时，即其它样式不用import*/
+@import url('../../../module/headInfo/css/style.css');
+
+/*body{background: #000;}*/
+
+h1,h2,h3,h4,h5,h6{font-weight: normal;}
+body{background: #fff;}
+
+svg{ font-family: "Microsoft YaHei",Arial,Helvetica,sans-serif,"宋体" !important; height: auto; width: auto; }
+
+.noMgB{margin: 0 !important;}
+.y-sl text{ color: #404040 !important; fill: #404040 !important; font-size: 14px !important;}
+.fontFmArial{ font-family: Arial !important; }
+
+.platform-data{ height: 370px; background: url('../img/platform-data-bg.png') top center no-repeat; }
+.platform-data-con{ text-align: center; overflow: hidden; height: 100%;}
+
+.platform-data-con h2{font-size: 18px; color: #404040; height: 24px; line-height: 24px; margin-top: 30px; font-weight: bold;}
+.platform-data-con h2 span{ position: relative; }
+.platform-data-con h2 .title-left-ico{ display: block; position: absolute; top: 11px; left: -56px; width: 49px; height: 3px; background: url('../img/title-left.png') no-repeat;}
+.platform-data-con h2 .title-right-ico{ display: block; position: absolute; top: 11px; left: 79px; width: 49px; height: 3px; background: url('../img/title-right.png') no-repeat;}
+
+.platform-data-con h3{font-size: 16px; color: #818181; height: 24px; line-height: 24px; margin-top: 10px;}
+.platform-data-con ul{ overflow: hidden; margin-top: 70px; height: 99px;}
+.platform-data-con ul li{ float: left; width: 300px; color: #fff; overflow: hidden; position: relative;}
+.platform-data-con ul li h4{ font-size: 14px; font-weight: normal; margin-bottom: 15px; }
+.platform-data-con ul li p{ font-size: 40px; margin: 0 20px;     letter-spacing: 1px; font-weight: normal;}
+.platform-data-con ul .platform-data-li01{ margin-left: 79px; }
+.platform-data-con ul .platform-data-li02{ margin-left: 70px; }
+.platform-data-con ul .platform-data-li03{ margin-left: 70px; }
+.platform-data-con ul .platform-data-li01 p{ text-shadow: 0px 0px 12px rgba(248, 87, 81, .9); }
+.platform-data-con ul .platform-data-li02 p{ text-shadow: 0px 0px 12px rgba(72, 95, 246, .9);  }
+.platform-data-con ul .platform-data-li03 p{ text-shadow: 0px 0px 12px rgba(103, 98, 254, .9); }
+.platform-data-con .cur-data{ height: 24px; font-size: 12px; color: #404040;  position: relative; display: inline-block; margin-top: 75px;}
+.platform-data-con .cur-data-ico{ display: inline-block; width: 7px; height: 7px; background: url('../img/cur-data-ico.png') no-repeat; margin-right: 5px; position: absolute; left: -11px; top: 6px;}
+
+.platform-transact-data{ background: url('../img/platform-transact-data-bg.png') top center no-repeat; position: relative;}
+.platform-transact-showData{ height: 346px; color: #fff; text-align: center; overflow: hidden; }
+.platform-transact-showData h2{ font-size: 18px;  height: 24px; line-height: 24px; margin-top: 30px; font-weight: bold;}
+.platform-transact-showData h2 span{ position: relative; }
+.platform-transact-showData h2 .title-left-ico{ display: block; position: absolute; top: 11px; left: -58px; width: 49px; height: 3px; background: url('../img/title-left-white.png') no-repeat;}
+.platform-transact-showData h2 .title-right-ico{ display: block; position: absolute; top: 11px; left: 117px; width: 49px; height: 3px; background: url('../img/title-right-white.png') no-repeat;}
+.platform-transact-showData ul{ overflow: hidden; width: 900px; margin: 29px auto 0; height: 229px;}
+.platform-transact-showData ul li{ float: left; width: 300px; margin-bottom: 51px; overflow: hidden; height: 82px;}
+.platform-transact-showData ul li div{ font-size: 30px; height: 48px; margin-bottom: 10px;}
+.platform-transact-showData ul li p{ font-size: 14px; }
+.platform-transact-total-con, .financing-enterprise-total-con{ background: url('../img/platform-transact-total-con-bg.png') center -194px no-repeat; padding-bottom: 70px;}
+.platform-transact-total{ width: 1146px; margin: 33px auto 0;}
+.platformTransactTotal, .platformTransactCount{ width: 100%; }
+.platformTransactCount, .financingEnterpriseCount{ height: 400px; }
+
+.platformTransactTotal .highcharts-container, .financingEnterprisetTotal .highcharts-container{ border: 1px #ff6460 solid; border-radius: 8px; -webkit-border-radius: 8px; -moz-border-radius: 8px; -o-border-radius: 8px; -ms-border-radius: 8px;}
+.platformTransactCount .highcharts-container, .financingEnterpriseCount .highcharts-container{ border: 1px #687bff solid; border-radius: 8px; -webkit-border-radius: 8px; -moz-border-radius: 8px; -o-border-radius: 8px; -ms-border-radius: 8px;}
+.platformTransactTotal .highcharts-axis-labels, .financingEnterprisetTotal .highcharts-axis-labels{ transform: translateY(13px); -webkit-transform: translateY(13px); -moz-transform: translateY(13px); -o-transform: translateY(13px); -ms-transform: translateY(13px); }
+
+.highcharts-title{ font-size: 16px !important; color: #404040 !important; }
+.investor-total .highcharts-title{ font-size: 18px !important;  }
+.highcharts-xaxis-labels text{ font-size: 16px !important; color:#404040 !important; }
+.highcharts-axis-line{ display: none; }
+.highcharts-stack-labels text{ font-size: 14px !important; color: #404040 !important; font-weight: normal !important;}
+
+.platform-transact-count{ width: 1146px;  margin: 0 auto;}
+
+.financing-enterprise-data{ background: url('../img/financing-enterprise-data-bg.png') top center no-repeat;}
+.financing-enterprise-showData{ height: 411px; text-align: center;  color: #fff; overflow: hidden; margin-bottom: 30px;}
+.financing-enterprise-showData h2{ font-size: 18px;  height: 24px; line-height: 24px; margin-top: 86px; font-weight: bold; margin-bottom: 50px;}
+.financing-enterprise-showData h2 span{ position: relative; }
+.financing-enterprise-showData h2 .title-left-ico{ display: block; position: absolute; top: 11px; left: -58px; width: 49px; height: 3px; background: url('../img/title-left-white.png') no-repeat;}
+.financing-enterprise-showData h2 .title-right-ico{ display: block; position: absolute; top: 11px; left: 117px; width: 49px; height: 3px; background: url('../img/title-right-white.png') no-repeat;}
+.financing-enterprise-showData ul{ overflow: hidden; }
+.financing-enterprise-showData ul li{ float: left; width: 240px; position: relative; overflow: hidden;}
+.financing-enterprise-showData ul li div{ font-size: 22px; margin-bottom: 8px; }
+.financing-enterprise-showData ul li p{ font-size: 16px; }
+.financing-enterprise-showData ul li i{ display: block; width: 64px; height: 64px; margin: 0 auto 20px; }
+.financing-enterprise-showData ul li .financing-enterprise-line{ display: block; position: absolute; top: 49px; right: 0; background: #c0c1ce; width: 1px; height: 45px; }
+.financing-enterprise-li01 i{ background: url('../img/financing-enterprise-ico01.png') no-repeat; }
+.financing-enterprise-li02 i{ background: url('../img/financing-enterprise-ico02.png') no-repeat; }
+.financing-enterprise-li03 i{ background: url('../img/financing-enterprise-ico03.png') no-repeat; }
+.financing-enterprise-li04 i{ background: url('../img/financing-enterprise-ico04.png') no-repeat; }
+.financing-enterprise-li05 i{ background: url('../img/financing-enterprise-ico05.png') no-repeat; }
+
+.financing-enterprise-total, .financing-enterprise-count{ width: 1146px;  margin: 0 auto;}
+
+.investor-data{ background: url('../img/investor-data-bg.png') top center no-repeat; }
+.investor-showData{ height: 367px;text-align: center;  color: #fff; overflow: hidden;}
+.investor-showData h2{ font-size: 18px;  height: 24px; line-height: 24px; margin-top: 95px; font-weight: bold; }
+.investor-showData h2 span{ position: relative; }
+.investor-showData h2 .title-left-ico{ display: block; position: absolute; top: 11px; left: -57px; width: 49px; height: 3px; background: url('../img/title-left-white.png') no-repeat;}
+.investor-showData h2 .title-right-ico{ display: block; position: absolute; top: 11px; left: 98px; width: 49px; height: 3px; background: url('../img/title-right-white.png') no-repeat;}
+.investor-d { height: 120px; margin-top: 50px; display: inline-block;}
+.investor-d-left{ float: left; margin-right: 180px; }
+/*width: 510px;*/
+.investor-d-right{ float: right; }
+.investor-d .d-num{ color: #fff;  overflow: hidden; margin-bottom: 24px;}
+.investor-d .d-num span{ font-size: 32px; float: left; width: 42px; height: 42px; line-height: 42px; margin-right: 10px; border: 1px rgba(255,255,255,.6) solid; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -ms-border-radius: 5px; -o-border-radius: 5px; }
+.investor-d p{ font-size: 16px; }
+.investor-total{ overflow: hidden; border-bottom: 1px #dbdbdb solid; padding-bottom: 45px;}
+.investor-total-left{ float: left; width: 50%; position: relative; }
+.investor-total-left-line{ position: absolute; top: 56px; right: 0; bottom: 37px; width: 1px; background: #dbdbdb;}
+.investor-total-right{ float: right; width: 50%; }
+.investor-data .highcharts-legend-item text{ font-size: 16px !important; color: #404040 !important; font-weight: normal !important; }
+.investor-data .highcharts-point{ rx: 3; ry: 3; width: 15px; height: 15px; transform: translateY(-2px); -webkit-transform: translateY(-2px); -moz-transform: translateY(-2px); -o-transform: translateY(-2px); -ms-transform: translateY(-2px);}
+.investorAge, .investorTotal { height: 430px; }
+
+.area-distribute{ margin-bottom: 110px; }
+.area-distribute-showData{  }
+.area-distribute-showData h2{ font-size: 18px;  height: 24px; line-height: 24px; margin-top: 44px; font-weight: bold; text-align: center;}
+.area-distribute-showData h2 span{ position: relative; }
+.area-distribute-showData h2 .title-left-ico{ display: block; position: absolute; top: 11px; left: -66px; width: 49px; height: 3px; background: url('../img/title-left.png') no-repeat;}
+.area-distribute-showData h2 .title-right-ico{ display: block; position: absolute; top: 11px; left: 91px; width: 49px; height: 3px; background: url('../img/title-right.png') no-repeat;}
+.area-distribute .highcharts-map-navigation{ display: none; }
+.area-distribute .highcharts-credits {display: none;}
+.area-map{ height: 610px; margin-top: 30px; position: relative;}
+.area-map .area-map-left{ width: 400px; float: left; margin-top: 96px;}
+.area-map-left .area-map-ico{ width: 360px; height: 135px; font-size: 20px;  color: #fff; }
+.area-map-left .area-map-ico span{ display: block; float: left; height: 80px; line-height: 80px;}
+.area-map-left .area-map-ico .s01{ font-size: 24px;  margin-right: 20px; text-indent: 34px;}
+.area-map-ico .s02{ margin-right: 22px; min-width: 60px;}
+.area-map-ico .province-ico{ width: 80px; margin-right: 14px; }
+
+.area-map-ico .map_11_bg{background: url('../img/map_11_bg.png') center center no-repeat;}
+.area-map-ico .map_12_bg{background: url('../img/map_12_bg.png') center center no-repeat;}
+.area-map-ico .map_13_bg{background: url('../img/map_13_bg.png') center center no-repeat;}
+.area-map-ico .map_14_bg{background: url('../img/map_14_bg.png') center center no-repeat;}
+.area-map-ico .map_15_bg{background: url('../img/map_15_bg.png') center center no-repeat;}
+.area-map-ico .map_21_bg{background: url('../img/map_21_bg.png') center center no-repeat;}
+.area-map-ico .map_22_bg{background: url('../img/map_22_bg.png') center center no-repeat;}
+.area-map-ico .map_23_bg{background: url('../img/map_23_bg.png') center center no-repeat;}
+.area-map-ico .map_31_bg{background: url('../img/map_31_bg.png') center center no-repeat;}
+.area-map-ico .map_32_bg{background: url('../img/map_32_bg.png') center center no-repeat;}
+.area-map-ico .map_33_bg{background: url('../img/map_33_bg.png') center center no-repeat;}
+.area-map-ico .map_34_bg{background: url('../img/map_34_bg.png') center center no-repeat;}
+.area-map-ico .map_35_bg{background: url('../img/map_35_bg.png') center center no-repeat;}
+.area-map-ico .map_36_bg{background: url('../img/map_36_bg.png') center center no-repeat;}
+.area-map-ico .map_37_bg{background: url('../img/map_37_bg.png') center center no-repeat;}
+.area-map-ico .map_41_bg{background: url('../img/map_41_bg.png') center center no-repeat;}
+.area-map-ico .map_42_bg{background: url('../img/map_42_bg.png') center center no-repeat;}
+.area-map-ico .map_43_bg{background: url('../img/map_43_bg.png') center center no-repeat;}
+.area-map-ico .map_44_bg{background: url('../img/map_44_bg.png') center center no-repeat;}
+.area-map-ico .map_45_bg{background: url('../img/map_45_bg.png') center center no-repeat;}
+.area-map-ico .map_46_bg{background: url('../img/map_46_bg.png') center center no-repeat;}
+.area-map-ico .map_50_bg{background: url('../img/map_50_bg.png') center center no-repeat;}
+.area-map-ico .map_51_bg{background: url('../img/map_51_bg.png') center center no-repeat;}
+.area-map-ico .map_52_bg{background: url('../img/map_52_bg.png') center center no-repeat;}
+.area-map-ico .map_53_bg{background: url('../img/map_53_bg.png') center center no-repeat;}
+.area-map-ico .map_54_bg{background: url('../img/map_54_bg.png') center center no-repeat;}
+.area-map-ico .map_61_bg{background: url('../img/map_61_bg.png') center center no-repeat;}	
+.area-map-ico .map_62_bg{background: url('../img/map_62_bg.png') center center no-repeat;}
+.area-map-ico .map_63_bg{background: url('../img/map_63_bg.png') center center no-repeat;}
+.area-map-ico .map_64_bg{background: url('../img/map_64_bg.png') center center no-repeat;}
+.area-map-ico .map_65_bg{background: url('../img/map_65_bg.png') center center no-repeat;}
+
+
+.area-map01{background: url('../img/area-map-ico-01.png') 0 -27px  no-repeat;}
+.area-map02{background: url('../img/area-map-ico-02.png') 0 -27px no-repeat;}
+.area-map03{background: url('../img/area-map-ico-03.png') 0 -27px no-repeat;}
+.area-map .area-map-right{ width: 800px; float: left; }
+.area-map .map-bg{ width: 361px; height: 18px; position: absolute; background: url('../img/map-bg.png') no-repeat; bottom: -46px; right: 242px;}
+
+
+.operation-report{background: url('../img/operation-report-bg.png') top center no-repeat;}
+.operation-report-con{  text-align: center;  color: #fff; overflow: hidden;}
+.operation-report-con h2{ font-size: 18px;  height: 24px; line-height: 24px; margin-top: 50px; font-weight: bold; }
+.operation-report-con h2 span{ position: relative; }
+.operation-report-con h2 .title-left-ico{ display: block; position: absolute; top: 11px; left: -68px; width: 49px; height: 3px; background: url('../img/title-left-white.png') no-repeat;}
+.operation-report-con h2 .title-right-ico{ display: block; position: absolute; top: 11px; left: 90px; width: 49px; height: 3px; background: url('../img/title-right-white.png') no-repeat;}
+.operation-report-carousel{ width: 940px; height: 632px; margin: 0 auto; background: url('../img/macbook.png') no-repeat; margin-top: 46px;}
+.carousel-con{ overflow: hidden; height: 100%; position: relative; text-align: center;}
+.carousel-con .carousel-nav{ display: inline-block; position: absolute; z-index: 10; left: 50%; top: 425px; }
+.carousel-con .carousel-nav span{ display: inline-block; width: 6px; height: 6px; float: left;background: #1b1a1a; margin-right: 8px; border-radius: 6px; -webkit-border-radius: 6px; -moz-border-radius: 6px; -ms-border-radius: 6px; -o-border-radius: 6px;  }
+.carousel-con .carousel-nav span:last-child{ margin: 0; }
+.carousel-con .carousel-nav span.cur{ background: #6a6767; }
+.carousel-con .move{ width: 44px; height: 44px; position: absolute; z-index:  10; top: 257px; cursor: pointer;}
+.carousel-con .move.move-left{ background: url('../img/move-opacity-left.png') no-repeat;  left: 10px; }
+.carousel-con .move.move-right{ background: url('../img/move-opacity-right.png') no-repeat; right: 10px; }
+.carousel-con .move.move-left:hover{ background: url('../img/move-white-left.png') no-repeat;   }
+.carousel-con .move.move-right:hover{background: url('../img/move-white-right.png') no-repeat; }
+.operation-report-carousel ul{ width: 696px; margin: 65px auto 0; position: relative;}
+.operation-report-carousel ul li{ display: none; position: absolute;}
+.operation-report-carousel ul li p{ color: #878787; font-size: 14px; margin-top: 24px; }
+.operation-report-carousel ul li a{ display: block;}
+.operation-report-carousel ul li a img{width: 696px; height: 350px;}
+.operation-report-carousel ul li.show{ display: block; }

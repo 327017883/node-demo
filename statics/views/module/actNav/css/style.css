@@ -1,0 +1,54 @@
+@charset "utf-8";
+/**
+name:dtt
+Data:2016.08.02
+**/
+
+/*基本样式，页面加载共用头部时，即其它样式不用import*/
+@import url('../../../plugIn/poshytip-1.2/src/tip-yellow/tip-yellow.css');
+
+/*我的账户左侧块*/
+.act-left{ width:200px; float:left; margin-bottom: 20px;}
+.act-nav{ background:#fff; font-size:16px;border: 1px solid #ededed;border-top:2px solid #ff5151;}
+.act-nav li{ line-height:60px; padding-left:75px; border-top:1px solid #ededed;background:url(../img/icon.png) no-repeat;}
+.act-nav li:hover a,.act-nav li.cur a{color:#ff5151; text-decoration:none;}
+.act-nav li:hover,.act-nav li.cur{background-color:#fef6f5; }
+.act-nav li a{ color:#333;}
+.act-nav li.nv01{background-position:40px -371px;border-top:0;}
+.act-nav li.nv01:hover,.act-nav li.nv01.cur{background-position:40px -429px;}
+.act-nav li.nv02{background-position:40px -503px;}
+.act-nav li.nv02:hover,.act-nav li.nv02.cur{background-position:40px -569px;}
+.act-nav li.nv03{background-position:40px -645px;}
+.act-nav li.nv03:hover,.act-nav li.nv03.cur{background-position:40px -711px;}
+.act-nav li.nv04{background-position:40px -778px;}
+.act-nav li.nv04:hover,.act-nav li.nv04.cur{background-position:40px -839px;}
+.act-nav li.nv05{background-position:40px -922px;}
+.act-nav li.nv05:hover,.act-nav li.nv05.cur{background-position:40px -984px;}
+.act-nav li.nv06{background-position:40px -1057px;}
+.act-nav li.nv06:hover,.act-nav li.nv06.cur{background-position:40px -1120px;}
+.act-nav li.nv07{background-position:40px -1188px;}
+.act-nav li.nv07:hover,.act-nav li.nv07.cur{background-position:40px -1256px;}
+.act-nav li.nv08{background-position:40px -1335px;}
+.act-nav li.nv08:hover,.act-nav li.nv08.cur{background-position:40px -1424px;}
+.act-nav li.nv09{background-position:40px -1519px;}
+.act-nav li.nv09:hover,.act-nav li.nv09.cur{background-position:40px -1580px;}
+.act-left .wm{ position: relative; background: #fff; border: 1px solid #ededed; text-align: center; font-size: 14px; line-height: 22px; margin-top: 10px; padding: 165px 0 20px;}
+.act-left .wm i{width: 132px;height: 132px;display: inline-block;position: absolute;top:25px;left: 33px; background: url(../../../images/wx.png) no-repeat 0 0 / 132px 132px;filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='https://static.100lending.com/images/wx.png',sizingMethod='scale')\9;}
+.act-right{ width:950px; float:right; min-height:730px; margin-bottom: 20px;}
+
+/**公共部分**/
+a.mt{width:122px;cursor:pointer; vertical-align: middle; height:36px;margin-left:6px;font-size: 14px; line-height:36px; border: 1px solid #ededed; text-align:center;background:#ededed; color:#999; cursor:no-drop; display:inline-block;}
+a.mt:hover{ text-decoration:none;}
+a.zmil{ width:122px;cursor:pointer; height:36px;margin-left:6px;font-size: 14px; line-height:36px; border: 1px solid #ff5151; text-align:center; color:#ff5151; display:inline-block; background:#fff;transition:all 0.3s linear 0s; -moz-transition:all 0.3s linear 0s; -ms-transition:all 0.3s linear 0s; -o-transition:all 0.3s linear 0s; -webkit-transition:all 0.3s linear 0s;}
+a.zmil:hover{ background:#ff5151; text-decoration:none; color: #fff;}
+
+
+h3.tj-tel{font-size:14px;height:22px; margin: 0 30px; padding:18px 0 0 20px; border-top:1px solid #ededed; font-weight: normal; background: url(../../icon/pop.png) no-repeat 0 19px;}
+ol.chang-info{ margin: 6px 30px 25px 45px; list-style-type: decimal; font-size: 14px; line-height: 24px; color: #999;}
+ol.chang-info a{ color: #38f;}
+.act-tel{ border-bottom:1px solid #ededed; line-height:53px; padding-top:5px;margin: 0 30px;}
+.act-tel em{ font-size:16px; margin:0 10px 0 0;}
+.act-tel span{ font-size:14px; color:#999;}
+.act-tel a{ color:#38f; float:right; line-height: 20px; margin-top: 20px; font-size: 14px;}
+.act-bg{ background: #fff; border:1px solid #ededed;margin-bottom: 25px;}
+

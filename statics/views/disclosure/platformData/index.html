@@ -1,0 +1,230 @@
+ <!doctype html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+	<title>{{ title }}</title>
+
+	<link type="text/css" href="/views/disclosure/platformData/css/style.css" rel="stylesheet">
+	<script type="text/javascript" src="/plugIn/seajs/sea.js"></script>
+	<script type="text/javascript" src="/plugIn/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+
+{{include '../../module/headInfo/index'}}
+
+
+<input type="hidden" value="platform" id='menuCur'>
+
+<!-- 平台数据  start-->
+<div class="platform-data">
+	<div class="platform-data-con g-c">
+		<h2><span>平台数据 <i class="title-left-ico"></i><i class="title-right-ico"></i></span></h2>
+		<h3>优质资产  真实数据</h3>
+		<ul>
+			<li class="platform-data-li01">
+				<h4>累计交易总额（万元）</h4>
+				<p class="fontFmArial">{{dataAummary.investAmountSum}}</p>
+			</li>
+			<li class="platform-data-li02">
+				<h4>累计为投资人赚取收益（元）</h4>
+				<p class="fontFmArial">{{dataAummary.interestSum}}</p>
+			</li>
+			<li class="platform-data-li03">
+				<h4>累计加入民投金服的投资人（个）</h4>
+				<p class="fontFmArial">{{dataAummary.registerCountSum}}</p>
+			</li>
+		</ul>
+		<div class="cur-data"><i class="cur-data-ico"></i>数据截止至2017-04-26</div>
+	</div>
+</div>
+<!-- 平台数据  start-->
+
+<!-- 平台交易数据  start-->
+<div class="platform-transact-data">
+	<div class="platform-transact-showData g-c">
+		<h2><span>平台交易数据 <i class="title-left-ico"></i><i class="title-right-ico"></i></span></h2>
+		<ul>
+			<li>
+				<div class="fontFmArial">{{dataOperate.duePrincipalSum}}</div>
+				<p>待还本金（万元）</p>
+			</li>
+			<li>
+				<div class="fontFmArial">{{dataOperate.investCountSum}}</div>
+				<p>累计投资笔数（笔）</p>
+			</li>
+			<li>
+				<div class="fontFmArial">0</div>
+				<p>项目逾期率（%）</p>
+			</li>
+			<li class="noMgB">
+				<div class="fontFmArial">{{dataOperate.aveAnnualRateTotal}}</div>
+				<p>平均年化收益率（%）</p>
+			</li>
+			<li class="noMgB">
+				<div class="fontFmArial">{{dataOperate.aveSoldOutTimeTotal}}</div>
+				<p>平均售罄时间（小时）</p>
+			</li>
+			<li class="noMgB">
+				<div class="fontFmArial">{{dataOperate.aveDeadlineTotal}}</div>
+				<p>平均项目期限（天）</p>
+			</li>
+		</ul>
+	</div>
+	<div class="platform-transact-total-con">
+		<div class="platform-transact-total">
+				<div class='platformTransactTotal' id="platformTransactTotal"></div>
+		</div>
+	</div>
+
+	<div class="platform-transact-count-con">
+		<div class="platform-transact-count">
+			<div class='platformTransactCount' id="platformTransactCount"></div>
+		</div>
+	</div>
+</div>
+<!-- 平台交易数据  end-->
+
+<!-- 融资企业数据  start-->
+<div class="financing-enterprise-data">
+	<div class="financing-enterprise-showData g-c">
+		<h2><span>融资企业数据 <i class="title-left-ico"></i><i class="title-right-ico"></i></span></h2>
+		<ul>
+			<li class="financing-enterprise-li01">
+				<i></i>
+				<div class="fontFmArial">224</div>
+				<p>融资企业总数（个）</p>
+				<span class="financing-enterprise-line"></span>
+			</li>
+			<li class="financing-enterprise-li02">
+				<i></i>
+				<div class="fontFmArial">338,845.12</div>
+				<p>平均每笔借款额（元）</p>
+				<span class="financing-enterprise-line"></span>
+			</li>
+			<li class="financing-enterprise-li03">
+				<i></i>
+				<div class="fontFmArial">338,845.12</div>
+				<p>已还借款总额（元）</p>
+				<span class="financing-enterprise-line"></span>
+			</li>
+			<li class="financing-enterprise-li04">
+				<i></i>
+				<div class="fontFmArial">338,845.12</div>
+				<p>最大借款金额（元）</p>
+				<span class="financing-enterprise-line"></span>
+			</li>
+			<li class="financing-enterprise-li05">
+				<i></i>
+				<div class="fontFmArial">338,845.12</div>
+				<p>最小借款金额（元）</p>
+			</li>
+		</ul>
+	</div>
+	<div class="financing-enterprise-total-con">
+		<div class="financing-enterprise-total">
+				<div class='financingEnterprisetTotal' id="financingEnterprisetTotal"></div>
+		</div>
+	</div>
+	<div class="financing-enterprise-count">
+			<div class='financingEnterpriseCount' id="financingEnterpriseCount"></div>
+	</div>
+</div>
+<!-- 融资企业数据  end-->
+
+<!-- 投资人数据  start-->
+<div class="investor-data">
+	<div class="investor-showData g-c">
+		<h2><span>投资人数据 <i class="title-left-ico"></i><i class="title-right-ico"></i></span></h2>
+		<div class="investor-d-con">
+			<div class="investor-d">
+				<div class="investor-d-left">
+					<div class="investor-d-num d-num fontFmArial">						
+						<span>9</span>
+						<span>,</span>
+						<span>7</span>
+						<span>9</span>
+						<span>7</span>
+						<span>.</span>
+						<span>6</span>
+					</div>
+					<p>平均每笔投资额（元）</p>
+				</div>
+				<div class="investor-d-right">
+					<div class="investor-d-num d-num fontFmArial">
+						<span>9</span>
+						<span>,</span>
+						<span>7</span>
+						<span>9</span>
+						<span>7</span>
+						<span>.</span>
+						<span>6</span>
+					</div>
+					<p>单人最大累计投资额（元）</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="investor-total g-c">
+		<div class="investor-total-left">
+			<div id="investorAge"></div>
+			<div class="investor-total-left-line"></div>
+		</div>
+		<div class="investor-total-right">
+			<div id="investorTotal"></div>
+		</div>
+	</div>
+</div>
+<!-- 投资人数据  end-->
+
+<!-- 地域分布  start-->
+<div class="area-distribute">
+	<div class="area-distribute-showData g-c">
+		<h2><span>地域分布 <i class="title-left-ico"></i><i class="title-right-ico"></i></span></h2>
+		<div class="area-map">
+			<div class="area-map-left">
+				<div class="area-map-ico area-map01"><span class="s01 fontFmArial">1</span><span class="province-ico hb-ico"></span><span class="s02">湖北省</span><span class="s03 fontFmArial">41%</span></div>
+				<div class="area-map-ico area-map02"><span class="s01 fontFmArial">2</span><span class="province-ico js-ico"></span><span class="s02">江苏省</span><span class="s03 fontFmArial">13%</span></div>
+				<div class="area-map-ico area-map03"><span class="s01 fontFmArial">3</span><span class="province-ico zj-ico"></span><span class="s02">浙江省</span><span class="s03 fontFmArial">9%</span></div>
+			</div>
+			<div class="area-map-right" id='areaMapRight'></div>
+			<div class="map-bg"></div>
+		</div>
+	</div>
+</div>
+<!-- 地域分布  end-->
+
+<!-- 运营报告  start-->
+<div class="operation-report">
+	<div class="operation-report-con g-c">
+		<h2><span>运营报告 <i class="title-left-ico"></i><i class="title-right-ico"></i></span></h2>
+	</div>
+	<div class="operation-report-carousel">
+		<div class="carousel-con">
+			<ul>
+				<li class="show">
+					<a href="javascript:;"><img src="/views/disclosure/platformData/img/operation-banner01.jpg" /></a>
+					<p>民投金服2017年3月运营报告</p>
+				</li>
+				<li>
+					<a href="javascript:;"><img src="/views/disclosure/platformData/img/operation-banner02.jpg" /></a>
+					<p>民投金服2017年4月运营报告</p>
+				</li>
+			</ul>
+			<div class="carousel-nav">
+				<span class="cur"></span>
+				<span></span>
+			</div>
+
+			<div class="move move-left"></div>
+			<div class="move move-right"></div>
+		</div>	
+	</div>
+</div>
+<!-- 运营报告  end-->
+
+<script type="text/javascript" src='/plugin/Highcharts/js/highcharts-5.0.11.js'></script>
+<script type="text/javascript" src='/plugin/Highcharts/js/highchartsMap.js'></script>
+<script>seajs.use('/views/disclosure/platformData/js/init');</script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+ <!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+<title>头部</title>
+<link type="text/css" href="css/style.css" rel="stylesheet">
+<script type="text/javascript" src="../../plugIn/seajs/sea.js"></script>
+<script type="text/javascript" src="../../plugIn/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+<div class="header-top">
+	<div class="g-c">
+    	<span class="tel">客服热线：400-888-6221</span>
+        <span class="hd-r">
+        	<a target="_blank" href="/support" title="帮助中心">帮助中心</a>
+            <a target="_blank" href="/about?index" title="关于我们">关于我们</a>
+        </span>
+        <!--start 未登录状态-->
+        <span class="hd-r lg-reg"><a href="javascript:gotoLogin('${website}/user/login')">登录</a><a href="${contextPath}/user/register">注册</a></span>
+        <!--end 未登录状态-->
+        <!--start 已登录状态-->
+        <span class="hd-r ne">您好！<a href="${contextPath}/my/">千喜之约</a><a href="${contextPath}/user/logout">[ 安全退出 ]</a></span>
+        <!-- end 已登录状态-->
+    </div>
+</div>
+
+
+
+
+
+<!--测试调用-->
+<input value="index" id="menuCur" type="hidden">
+
+
+
+
+
+
+<div class="head">
+	<div class="g-c">
+		<a class="logo" href="${website}" title="民投金服LOGO"><img src="img/logo.png" width="363" height="225" alt="民投金服LOGO" title="民投金服LOGO"></a>
+		<div class="menus">
+			<a class="menu" href="${website}" title="民投金服官网" data-type="index">首页</a>
+			<div class="menu child" data-type="list">
+				<a href="${website}/product/listing" title="优选理财">优选理财&nbsp;&nbsp;</a>
+				<div class="menu-child">
+					<a href="${website}/product/listing/plan" title="银票计划">银票计划</a>
+					<a href="${website}/product/listing/sporadic" title="银票直投">银票直投</a>
+				</div>
+			</div>
+			<a class="menu" data-type="financing" href="${website}/product/current" title="零钱计划">零钱计划</a>
+			<a class="menu" data-type="beginner" href="${website}/product/listing/new" title="新手专享">新手专享</a>
+			<a class="menu" data-type="security" href="${website}/guarantee/security" title="安全保障">安全保障</a>
+			<i></i>
+		</div>
+		<!--c:choose>
+			<c:when test="${empty CURRENT_LOGIN_USER or CURRENT_LOGIN_USER.id <= 0}">
+				<%未登录状态 %
+				<a class="btn reg" href="${contextPath}/user/register">注 册</a>
+				<a class="btn login" href="${contextPath}/user/login">登 录</a>
+				-->
+			<!--/c:when>
+			<c:otherwise>
+				<%已登录状态 %-->
+				<div class="account">
+		            <a class="accountLink" href="${website}/my/" title="我的账户">我的账户</a>
+		            <div class="menuChild">
+		                <a href="${website}/my/" title="账户总览">账户总览</a>
+		                <a href="${website}/my/regular" title="定期理财">定期理财</a>
+		                <a href="${website}/my/current" title="零钱计划">零钱计划</a>
+		                <a href="${website}/user/logout" title="安全退出">安全退出</a>
+		            </div>
+		        </div>
+			<!--/c:otherwise>
+		</c:choose-->
+
+		<div class="download">
+			<a href="${website}/app/download" title="客户端下载">客户端下载</a>
+			<span><i></i>扫一扫下载客户端</span>
+		</div>
+
+	</div>
+</div>
+
+
+
+
+<br/><br/>
+
+
+
+<!--user导航-->
+<div class="user-menu">
+	<div class="g-c">
+		<a class="log" href="/" title="民投金服LOGO"></a>
+		<a class="back" href="/" title="返回首页">返回首页</a>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+
+
+
+
+
+
+<script>seajs.use('./js/init');</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+/*
+	20170516 zhuxj
+*/
+
+@import url('../../../module/page/css/style.css');
+@import url('../../../module/headInfo/css/style.css');
+body{background-color: #fff;}
+
+.banner{height:240px;width:100%;background:url('../img/banner.jpg') no-repeat center top;}
+.abountMenu{height: 40px;line-height: 40px;background:#b3856e;background-color: rgba(0,0,0,.1);}
+.abountMenu span{display: inline-block;width:150px;font-size: 16px;}
+.abountMenu span a{color:#fff;color:rgba(255,255,255,.5);text-decoration: none;}
+.abountMenu span.focus a{color:#fff;font-weight: 600;}
+.autoCon{width:1200px;margin:0 auto;position: relative;}
+.autoCon .title{margin-top: 10px;height:90px;background-position: center center;background-repeat: no-repeat;}
+.autoCon .title1{background-image: url("../img/title1.png");}
+.autoCon .title2{background-image: url("../img/title2.png");}
+
+/*报导列表*/
+.report .list{height:195px;margin-bottom: 40px;}
+.report .list .left{float:left;width:300px;height:195px;padding-right: 30px;}
+.report .list .right{margin-left: 330px;height:194px;border-bottom: 1px dashed #c6c6c6;}
+.report .list .right .reportTitle{color:#404040;font-size: 18px;font-weight: 600;line-height: 18px;padding-bottom: 10px;}
+.report .list .right .date{color:#818181;font-size: 16px;line-height: 30px;}
+.report .list .right .line{width:54px;height: 1px; background:#ff7155;margin:10px 0;}
+.report .list .right .txt{color:#818181;font-size: 16px;line-height: 35px;height:105px;overflow: hidden;}
+.report .list:hover .right .reportTitle{color:#ff7155;}
+.report .list a{display: block;text-decoration: none;}
+
+/*公告列表*/
+.notice .list{height:84px;line-height: 84px;font-size: 16px;}
+.notice .list.odd{background: #f6f6f6;}
+.notice .list .left{width:1000px;height:84px;float: left;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;padding-left: 40px;background: url("../img/point.png") no-repeat 25px center;color:#404040;}
+.notice .list .right{width:115px;height:84px;float: right;color:#818181;}
+.notice .list:hover .left{color:#ff7155;}
+.notice .list a{display: block;text-decoration: none;}
+
+/*详情*/
+.backCon{height: 45px;line-height: 45px;border-bottom: 1px dashed #c6c6c6;}
+.back{display:inline-block;color:#ff7155;font-size: 14px;background: url("../img/back.png") no-repeat left center;padding-left: 22px;}
+
+/**媒体报道详情页**/
+.detail h1.tel{ font-size:18px; margin-top:30px; line-height:40px; text-align:center;}
+.detail span.tel-info{ color:#999; line-height:30px; text-align:center; display:block; font-size:14px;}
+.detail p.sig-p{ line-height:28px; text-indent:24px; margin:15px 0;font-size:14px;}
+

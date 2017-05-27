@@ -1,0 +1,99 @@
+@charset "utf-8";
+/**
+ * 样式基础
+ * reset 标签重置
+ * base  常用样式
+ */
+
+/*html{overflow-y:scroll; overflow-x:hidden;}
+body{overflow-x:hidden;}*/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{margin:0;padding:0}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
+body,button,input,select,textarea{font:14px/1.5 "Microsoft YaHei",Arial,Helvetica,sans-serif,"宋体";}
+h1,h2,h3,h4,h5,h6{font-size:100%}
+address,cite,dfn,em,var{font-style:normal}
+code,kbd,pre,samp{font-family:courier new,courier,monospace}
+small{font-size:14px}
+ul,ol{list-style:none}
+a{text-decoration:none;color:#3388ff;cursor:pointer;}
+a:hover{text-decoration:underline}
+sup{vertical-align:text-top}
+sub{vertical-align:text-bottom}
+legend{color:#000}
+fieldset,img{border:0}
+img,object{vertical-align:middle}
+table{border-collapse:collapse;border-spacing:0}
+body{color:#333;background:#eef2f5;font-family:"Microsoft YaHei",Arial,Helvetica,sans-serif,"宋体"; font-size: 14px;}
+
+
+/**
+ * 定位
+ */
+.g-pr{position:relative}
+
+/**
+ * 显示
+ */
+.g-dn{display:none}
+.g-db{display:block}
+.g-tb{display:table;}
+.g-di{display:inline}
+.g-dib{display:inline-block;*display:inline;*zoom:1}
+.g-vh{visibility:hidden}
+
+/**
+ * 浮动
+ */
+.g-fl{float:left}
+.g-fr{float:right}
+
+/**
+ * 高度填充
+ */
+.g-h0{height:0}
+.g-h1{height:1px}
+.g-h5{height:5px}
+.g-h10{height:10px}
+.g-h15{height:15px}
+.g-h20{height:20px}
+.g-h25{height:25px;}
+.g-h30{height:30px;}
+.g-h0,.g-h1,.g-h5,.g-h10,.g-h15,.g-h20,.g-h25,.g-h30{clear:both;overflow:hidden}
+
+/**
+ * 文本对齐
+ */
+.g-tl{text-align:left}
+.g-tc{text-align:center}
+.g-tr{text-align:right}
+
+
+/**
+ * 全局容器 .g-o    1170px
+ * 全局容器 .g-b    1168px
+ * 全局容器 .g-c    1200px
+ */
+.g-c,.g-o{zoom:1; text-align:left;}
+.g-o{width:1170px;margin:0 auto}
+.g-b{width:1168px; border:1px solid #ededed;margin:0 auto; background:#fff;}
+.box{ overflow:auto; height:auto; margin-top:20px;}
+.main{margin:6px auto 20px;}
+.g-c{width:1200px;margin:0 auto;}
+.main35{margin:35px auto;}
+.bodybg{background:#eef2f5;}
+.radius8{border-radius:8px;}
+/**
+ * 内容显示控制
+ * .g-e  显示省略号(包含不换行)
+ * .g-b  换行
+ * .g-ub 不换行
+ */
+.g-e{overflow:hidden;-ms-text-overflow:ellipsis;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;}
+.g-b{word-wrap:break-word;word-break:break-all;}
+.g-ub{white-space:nowrap;word-wrap:normal;}
+
+/**活动标示**/
+.commonIcon{display: inline-block;vertical-align: middle;vertical-align: middle\9;font-size: 12px;}
+.commonIcon.commonActivity{background: #ff9d77;text-align: center;padding: 0 5px;border-radius: 2px;height:17px;line-height: 17px;color:#fff !important;font-size:12px !important;vertical-align: inherit;}
+.commonIcon.activity518{width:62px;height:15px;background: url("../module/icon/activity518.png") no-repeat;}
+.commonIcon.product-icon-new{ width: 28px; height: 15px; background: url(../module/icon/product-icon-new.png) no-repeat;}

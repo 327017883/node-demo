@@ -1,0 +1,43 @@
+/*
+	20170516 zhuxj
+*/
+
+@import url('../../../module/headInfo/css/style.css');
+body{background-color: #fff;}
+
+.banner{height:240px;width:100%;background:url('../img/banner.jpg') no-repeat center top;}
+.abountMenu{height: 40px;line-height: 40px;background:#b3856e;background-color: rgba(0,0,0,.1);}
+.abountMenu span{display: inline-block;width:150px;font-size: 16px;}
+.abountMenu span a{color:#fff;color:rgba(255,255,255,.5);text-decoration: none;}
+.abountMenu span.focus a{color:#fff;font-weight: 600;}
+.autoCon{width:1200px;margin:0 auto;position: relative;}
+.autoCon .title{margin-top: 10px;height:90px;background-position: center center;background-repeat: no-repeat;}
+.autoCon .title1{background-image: url("../img/title1.png");}
+.autoCon .title2{background-image: url("../img/title2.png");}
+.autoCon .title3{background-image: url("../img/title3.png");}
+/*监管部门*/
+.autoCon .list{height:198px;margin-bottom:40px;}
+.autoCon .list .left{float:left;width:198px;height:198px;border:1px dashed #d7d7d7;border-radius: 5px;}
+.autoCon .list .left.jg1{background: url("../img/jg1.jpg") no-repeat center center;}
+.autoCon .list .left.jg2{background: url("../img/jg2.jpg") no-repeat center center;}
+.autoCon .list .left.jg3{background: url("../img/jg3.jpg") no-repeat center center;}
+.autoCon .list .left.jg4{background: url("../img/jg4.jpg") no-repeat center center;}
+.autoCon .list .left.jg5{background: url("../img/jg5.jpg") no-repeat center center;}
+.autoCon .list .right{float:right;width:965px;min-height:198px;border-top:1px dashed transparent;border-bottom:1px dashed #d7d7d7;}
+.autoCon .list .right .bl{font-size: 18px;color:#404040;line-height: 18px;font-weight: 600;padding-bottom: 20px;}
+.autoCon .list .right .txt{line-height: 35px;color:#818181;font-size: 16px;}
+.autoCon .list .right .txt p{padding-bottom: 15px;}
+.autoCon .list .right.noBorder{border-bottom: 1px solid transparent;padding-bottom: 40px;}
+
+/*监管部门*/
+.laws .lawsTitle{border-left:4px solid #ff6f64;font-size: 18px;font-weight: 600;color:#404040;line-height: 18px;padding-left:12px;margin:10px 0 30px;}
+.laws .lawsTxt{font-size: 16px;color:#818181;line-height: 35px;text-align: justify;}
+.laws .lawsTxt p{padding-bottom: 18px;}
+.f6f6f6{background: #f6f6f6;}
+.lawsList{margin:0 auto;width:950px;padding-bottom: 30px;}
+.lawsList div{display:inline-block;width:220px;height:60px;line-height:60px;text-align: center;font-size: 20px;color:#404040;border:1px solid #c6c6c6;margin:15px 45px;}
+.lawsList div:hover{border-color: #ff7155;}
+.lawsList div a{display: block;color:#404040;text-decoration: none;}
+.lawsList div:hover a{color:#ff7155;}
+.whiteSpace{height:100px;}
+
