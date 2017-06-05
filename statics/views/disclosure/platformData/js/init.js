@@ -4,11 +4,13 @@ define(function(require, exports, module) {
 
 	var t = require('./data-test.js');
 	$('.info-nav li').eq(0).addClass('cur');
+
 	$(function(){
+
 		var page = {
 			init: function(){
 
-				
+				this.webSocket();
 
 				//每月交易总额 柱状图 初始化
 				this.platformTransactTotal();
@@ -34,6 +36,48 @@ define(function(require, exports, module) {
 				//运营报告 banner 切换
 				this.operationBanner();
 
+			},
+			webSocket: function(){
+				
+				let ws = new WebSocket('ws://192.168.0.87:8080/');
+
+				// ws.onopen = function () {
+				  
+				// }
+
+				// switch (ws.readyState) {
+				//   case WebSocket.CONNECTING:
+				//     // do something
+				//     break;
+				//   case WebSocket.OPEN:
+				//     	ws.send('Hello Server!');
+				//     break;
+				//   case WebSocket.CLOSING:
+				//     // do something
+				//     break;
+				//   case WebSocket.CLOSED:
+				//     // do something
+				//     break;
+				//   default:
+				//     // this never happens
+				//     break;
+				// }
+				
+				// ws.onmessage = function(event){
+				// 	if(typeof event.data === String) {
+				// 		console.log("Received data string");
+				// 	}
+
+				// 	if(event.data instanceof ArrayBuffer){
+				// 		var buffer = event.data;
+				// 		console.log("Received arraybuffer");
+				// 	}
+				// }
+				// ws.onerror = function(event) {
+				//   console.log(event)
+				// };
+
+				//ws.send('your message');
 			},
 			platformTransactTotal: function(){
 

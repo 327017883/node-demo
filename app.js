@@ -12,6 +12,7 @@ var debug = require('debug')('app: app.js');
 
 var app = express();
 
+
 // view engine setup
 app.set('views', path.join(__dirname, 'statics/views'));
 

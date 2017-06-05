@@ -2,9 +2,14 @@ let http = require('http');
 let debug = require('debug');
 let httpDebug = debug('app:http');
 let errorDebug = debug('app:error');
+let clientwebsocket = debug('app:clientwebsocket');
+let serverwebsocket = debug('app:serverwebsocket');
 let eventproxy = require('eventproxy');
 
 let host = require('../config/config.js');
+
+var websocket = require('websocket')
+
 
 module.exports = function(app){
 
@@ -126,6 +131,13 @@ module.exports = function(app){
 			ep.emit('optionsDataOperate', data);
 		});
 
+		ep.all('optionsDataAummary', 'optionsDataOperate', function(data1, data2){
+			console.log('并发请求结束：')
+			returnData.dataAummary = JSON.parse(data1);
+			returnData.dataOperate = JSON.parse(data2);
+			response.render( pages.index.renderUrl, returnData);  
+		});
+
 		function getData(options, fn){
 			let req1 =
 				http.request(options, (res) =>{ 
@@ -148,12 +160,63 @@ module.exports = function(app){
 				req1.end();
 		}
 
-		ep.all('optionsDataAummary', 'optionsDataOperate', function(data1, data2){
-			console.log('并发请求结束：')
-			returnData.dataAummary = JSON.parse(data1);
-			returnData.dataOperate = JSON.parse(data2);
-			response.render( pages.index.renderUrl, returnData);  
-		});
+		WebSocketServerFn();
+
+		function WebSocketServerFn(){
+
+			var WebSocketServer = require('websocket').server;
+
+			var server = http.createServer(function(request, response) {
+			    serverwebsocket((new Date()) + ' Received request for ' + request.url);
+			    response.writeHead(404);
+			    response.end();
+			});
+			server.listen(8080, function() {
+			    serverwebsocket((new Date()) + ' Server is listening on port 8080');
+			});
+
+			wsServer = new WebSocketServer({
+			    httpServer: server,
+			    // You should not use autoAcceptConnections for production
+			    // applications, as it defeats all standard cross-origin protection
+			    // facilities built into the protocol and the browser.  You should
+			    // *always* verify the connection's origin and decide whether or not
+			    // to accept it.
+			    autoAcceptConnections: false
+			});
+
+			function originIsAllowed(origin) {
+			  // put logic here to detect whether the specified origin is allowed.
+			  return true;
+			}
+
+			wsServer.on('request', function(request) {
+
+			    if (!originIsAllowed(request.origin)) {
+			      // Make sure we only accept requests from an allowed origin
+			      request.reject();
+			      serverwebsocket((new Date()) + ' Connection from origin ' + request.origin + ' rejected.');
+			      return;
+			    }
+			    
+			    var connection = request.accept('echo-protocol', request.origin);
+			    serverwebsocket((new Date()) + ' Connection accepted.');
+
+			    connection.on('message', function(message) {
+			        if (message.type === 'utf8') {
+			            serverwebsocket('Received Message: ' + message.utf8Data);
+			            connection.sendUTF(message.utf8Data);
+			        }
+			        else if (message.type === 'binary') {
+			            serverwebsocket('Received Binary Message of ' + message.binaryData.length + ' bytes');
+			            connection.sendBytes(message.binaryData);
+			        }
+			    });
+			    connection.on('close', function(reasonCode, description) {
+			        serverwebsocket((new Date()) + ' Peer ' + connection.remoteAddress + ' disconnected.');
+			    });
+			});
+		}		
 
 	});
 
