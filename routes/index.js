@@ -8,9 +8,6 @@ let eventproxy = require('eventproxy');
 
 let host = require('../config/config.js');
 
-var websocket = require('websocket')
-
-
 module.exports = function(app){
 
 	let pages = {
@@ -164,57 +161,23 @@ module.exports = function(app){
 
 		function WebSocketServerFn(){
 
-			var WebSocketServer = require('websocket').server;
-
-			var server = http.createServer(function(request, response) {
-			    serverwebsocket((new Date()) + ' Received request for ' + request.url);
-			    response.writeHead(404);
-			    response.end();
-			});
-			server.listen(8080, function() {
+			var server = require('http').createServer(app);
+			var io = require('socket.io').listen(server);
+			server.listen(8080, function(){
 			    serverwebsocket((new Date()) + ' Server is listening on port 8080');
 			});
 
-			wsServer = new WebSocketServer({
-			    httpServer: server,
-			    // You should not use autoAcceptConnections for production
-			    // applications, as it defeats all standard cross-origin protection
-			    // facilities built into the protocol and the browser.  You should
-			    // *always* verify the connection's origin and decide whether or not
-			    // to accept it.
-			    autoAcceptConnections: false
-			});
+			io.sockets.on('connection', function(socket) {
 
-			function originIsAllowed(origin) {
-			  // put logic here to detect whether the specified origin is allowed.
-			  return true;
-			}
-
-			wsServer.on('request', function(request) {
-
-			    if (!originIsAllowed(request.origin)) {
-			      // Make sure we only accept requests from an allowed origin
-			      request.reject();
-			      serverwebsocket((new Date()) + ' Connection from origin ' + request.origin + ' rejected.');
-			      return;
-			    }
-			    
-			    var connection = request.accept('echo-protocol', request.origin);
-			    serverwebsocket((new Date()) + ' Connection accepted.');
-
-			    connection.on('message', function(message) {
-			        if (message.type === 'utf8') {
-			            serverwebsocket('Received Message: ' + message.utf8Data);
-			            connection.sendUTF(message.utf8Data);
-			        }
-			        else if (message.type === 'binary') {
-			            serverwebsocket('Received Binary Message of ' + message.binaryData.length + ' bytes');
-			            connection.sendBytes(message.binaryData);
-			        }
+			    socket.on('message', function(data) {
+			        serverwebsocket('Received message: ' + JSON.stringify(data));
+			        socket.send({send: 'message'});
 			    });
-			    connection.on('close', function(reasonCode, description) {
-			        serverwebsocket((new Date()) + ' Peer ' + connection.remoteAddress + ' disconnected.');
-			    });
+
+			    socket.on('disconnect',function(){ 
+				    serverwebsocket('Server has disconnected'); 
+				  });
+
 			});
 		}		
 

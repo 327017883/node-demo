@@ -39,45 +39,30 @@ define(function(require, exports, module) {
 			},
 			webSocket: function(){
 				
-				let ws = new WebSocket('ws://192.168.0.87:8080/');
+				let socket = io.connect('http://192.168.0.87:8080');
 
-				// ws.onopen = function () {
-				  
-				// }
+				// 添加一个连接监听器
+				socket.on('connect',function() { 
+				  console.log('Client has connected to the server!'); 
+				});
 
-				// switch (ws.readyState) {
-				//   case WebSocket.CONNECTING:
-				//     // do something
-				//     break;
-				//   case WebSocket.OPEN:
-				//     	ws.send('Hello Server!');
-				//     break;
-				//   case WebSocket.CLOSING:
-				//     // do something
-				//     break;
-				//   case WebSocket.CLOSED:
-				//     // do something
-				//     break;
-				//   default:
-				//     // this never happens
-				//     break;
-				// }
-				
-				// ws.onmessage = function(event){
-				// 	if(typeof event.data === String) {
-				// 		console.log("Received data string");
-				// 	}
+				// 添加一个连接监听器
+				socket.on('message',function(data) { 
+				  console.log('This is a message from the server：');
+				  console.log(data) 
+				});
 
-				// 	if(event.data instanceof ArrayBuffer){
-				// 		var buffer = event.data;
-				// 		console.log("Received arraybuffer");
-				// 	}
-				// }
-				// ws.onerror = function(event) {
-				//   console.log(event)
-				// };
+				// 添加一个关闭连接的监听器
+				socket.on('disconnect',function() {
+				  console.log('The client has disconnected!'); 
+				});
 
-				//ws.send('your message');
+				// socket.on('news', function(data){
+			 //        console.log(data);
+			 //        socket.emit('my other event', {my: 'data'});
+			 //    });
+
+			 	socket.send({message: 'hello world!'});
 			},
 			platformTransactTotal: function(){
 
