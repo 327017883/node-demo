@@ -2,11 +2,20 @@ let http = require('http');
 let debug = require('debug');
 let httpDebug = debug('app:http');
 let errorDebug = debug('app:error');
+let epDebug = debug('app:ep');
+let GeneratorDebug = debug('app:Generator');
 let clientwebsocket = debug('app:clientwebsocket');
 let serverwebsocket = debug('app:serverwebsocket');
 let eventproxy = require('eventproxy');
 
 let host = require('../config/config.js');
+
+testEs6();
+//测试 es6 语法
+function testEs6(){
+
+	
+}
 
 module.exports = function(app){
 
@@ -99,12 +108,7 @@ module.exports = function(app){
 
 	app.get( pages.index.getUrl, (req,response) =>{
 
-		httpDebug('============= 平台数据 ================');
-		
-		let ep = new eventproxy();
-		let returnData = {
-			title: '平台数据'
-		};		
+		httpDebug('============= 平台数据 ================');				
 
 		//请求参数
 		var requestOptions = {
@@ -120,45 +124,116 @@ module.exports = function(app){
 			}
 		};
 
-		getData(requestOptions.optionsDataAummary, function(data){
-			ep.emit('optionsDataAummary', data);
-		});
+		testGenerator();
+		//eventproxy 模块 控制并发请求
+		function testEventproxy(){
+			let ep = new eventproxy();
+			let returnData = {
+				title: '平台数据'
+			};					
 
-		getData(requestOptions.optionsDataOperate, function(data){
-			ep.emit('optionsDataOperate', data);
-		});
+			getData(requestOptions.optionsDataAummary, function(data){
+				ep.emit('optionsDataAummary', data);
+			});
 
-		ep.all('optionsDataAummary', 'optionsDataOperate', function(data1, data2){
-			console.log('并发请求结束：')
-			returnData.dataAummary = JSON.parse(data1);
-			returnData.dataOperate = JSON.parse(data2);
-			response.render( pages.index.renderUrl, returnData);  
-		});
+			getData(requestOptions.optionsDataOperate, function(data){
+				ep.emit('optionsDataOperate', data);
+			});
 
-		function getData(options, fn){
-			let req1 =
-				http.request(options, (res) =>{ 
+			ep.all('optionsDataAummary', 'optionsDataOperate', function(data1, data2){
+				epDebug('并发请求结束')
+				returnData.dataAummary = JSON.parse(data1);
+				returnData.dataOperate = JSON.parse(data2);
+				response.render( pages.index.renderUrl, returnData);  
+			});
 
-					res.setEncoding('utf8');
-				    res.on('data', (data) => {
-				    	fn(data);
-				    });
-				    res.on('end', () => {
-				    	//httpDebug('响应中已无数据');
-				    });
+			function getData(options, fn){
+				let req1 =
+					http.request(options, (res) =>{ 
 
-				})
-				.on('error', (e) => {			
-				    //errorDebug('problem with request: ' + e.message);		    
-				})
-				.on('finish', () => {
-					//httpDebug('请求完成');
-				});	  
-				req1.end();
+						res.setEncoding('utf8');
+					    res.on('data', (data) => {
+					    	fn(data);
+					    });
+					    res.on('end', () => {
+					    	//httpDebug('响应中已无数据');
+					    });
+
+					})
+					.on('error', (e) => {			
+					    //errorDebug('problem with request: ' + e.message);		    
+					})
+					.on('finish', () => {
+						//httpDebug('请求完成');
+					});	  
+					req1.end();
+			}
 		}
 
-		WebSocketServerFn();
+		// Generator 函数 测试多次请求，有先后顺序，即先执行一次异步请求，等待执行完后，再执行下一次异步操作
+		function testGenerator(){
 
+			function getDataPromise(options){
+
+				return new Promise(function (resolve, reject){
+
+				    let req1 =
+					http.request(options, (res) =>{ 
+
+						res.setEncoding('utf8');
+					    res.on('data', (data) => {
+					    	resolve(data);
+					    });
+					    res.on('end', () => {
+					    	//httpDebug('响应中已无数据');
+					    });
+
+					})
+					.on('error', (e) => {			
+					    //errorDebug('problem with request: ' + e.message);		    
+					})
+					.on('finish', () => {
+						//httpDebug('请求完成');
+					});	  
+					req1.end();
+				});				
+			}
+
+			function* Generator(){
+				let returnValue = {
+					title: '平台数据'
+				};
+				let optionsDataAummary = yield getDataPromise(requestOptions.optionsDataAummary);
+				GeneratorDebug(optionsDataAummary);
+				returnValue.dataAummary = JSON.parse(optionsDataAummary);
+
+				let optionsDataOperate = yield getDataPromise(requestOptions.optionsDataOperate);
+				GeneratorDebug(optionsDataOperate);
+				returnValue.dataOperate = JSON.parse(optionsDataOperate);
+
+				response.render( pages.index.renderUrl, returnValue); 
+			}
+
+			function run(gen){
+
+			  var g = gen(); 
+
+			  function next(data){
+			    var result = g.next(data);
+			    if (result.done) return result.value;
+			    result.value.then(function(data){		    
+			      next(data);
+			    });
+			  }
+	 
+			  next();
+			}
+
+			run(Generator);
+	    }
+
+	    //测试 websocket 协议
+		//WebSocketServerFn();
 		function WebSocketServerFn(){
 
 			var server = require('http').createServer(app);
@@ -179,8 +254,8 @@ module.exports = function(app){
 				  });
 
 			});
-		}		
-
+		}
+		
 	});
 
 	app.get( pages.about.getUrl, function(req,res){  

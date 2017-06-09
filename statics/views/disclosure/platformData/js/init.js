@@ -10,7 +10,7 @@ define(function(require, exports, module) {
 		var page = {
 			init: function(){
 
-				this.webSocket();
+				//this.webSocket();
 
 				//每月交易总额 柱状图 初始化
 				this.platformTransactTotal();

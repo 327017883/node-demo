@@ -146,9 +146,26 @@ function onError(error) {
   }
 }
 
+// 获取本地 以太网 IPv4 的 ip 地址
+var ip;
+function getIp(){
+    let os = require('os');
+    let ifaces = os.networkInterfaces();
+    for (let dev in ifaces) {  
+      if('以太网' == dev){
+        ifaces[dev].forEach(function(details){
+          if (details.family == 'IPv4') {
+            ip = details.address;
+          }  
+        }); 
+      }
+  }
+}
+
 /**
  * Event listener for HTTP server "listening" event.
  */
+
 
 function onListening() {
 
@@ -156,8 +173,9 @@ function onListening() {
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-  //console.log('Server running at http://127.0.0.1:' + port +'/');
-  debug('Server running at http://127.0.0.1:' + port +'/');
+  getIp();
+
+  debug('Server running at http://127.0.0.1:' + port + ' or http://' + ip + ':' + port +'/');
 }
 
 module.exports = app;
