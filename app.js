@@ -12,7 +12,6 @@ var debug = require('debug')('app: app.js');
 
 var app = express();
 
-
 // view engine setup
 app.set('views', path.join(__dirname, 'statics/views'));
 
@@ -147,17 +146,16 @@ function onError(error) {
 }
 
 // 获取本地 以太网 IPv4 的 ip 地址
-var ip;
 function getIp(){
     let os = require('os');
     let ifaces = os.networkInterfaces();
     for (let dev in ifaces) {  
       if('以太网' == dev){
-        ifaces[dev].forEach(function(details){
-          if (details.family == 'IPv4') {
-            ip = details.address;
+        for(let i = 0, len = ifaces[dev].length; i < len; i++){
+          if (ifaces[dev][i].family == 'IPv4') {
+            return ifaces[dev][i].address;
           }  
-        }); 
+        }
       }
   }
 }
@@ -173,9 +171,8 @@ function onListening() {
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-  getIp();
 
-  debug('Server running at http://127.0.0.1:' + port + ' or http://' + ip + ':' + port +'/');
+  debug('Server running at http://127.0.0.1:' + port + ' or http://' + getIp() + ':' + port +'/');
 }
 
 module.exports = app;

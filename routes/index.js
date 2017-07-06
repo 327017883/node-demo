@@ -10,13 +10,6 @@ let eventproxy = require('eventproxy');
 
 let host = require('../config/config.js');
 
-testEs6();
-//测试 es6 语法
-function testEs6(){
-
-	
-}
-
 module.exports = function(app){
 
 	let pages = {
@@ -108,8 +101,8 @@ module.exports = function(app){
 
 	app.get( pages.index.getUrl, (req,response) =>{
 
-		httpDebug('============= 平台数据 ================');				
-
+		httpDebug('============= 平台数据 ================');		
+			
 		//请求参数
 		var requestOptions = {
 			optionsDataAummary: {
@@ -255,7 +248,7 @@ module.exports = function(app){
 
 			});
 		}
-		
+			
 	});
 
 	app.get( pages.about.getUrl, function(req,res){  
