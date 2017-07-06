@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "set DEBUG=app:* & supervisor app.js"
+    "start": "set DEBUG=app:* & nodemon app.js"
   },
   "dependencies": {
     "body-parser": "~1.15.1",
@@ -16,7 +16,6 @@
     "request": "^2.81.0",
     "serve-favicon": "~2.3.0",
     "socket.io": "^2.0.1",
-    "supervisor": "^0.12.0",
     "vue": "^2.2.6"
   },
   "devDependencies": {
@@ -37,7 +36,9 @@
     "file-loader": "^0.9.0",
     "glob": "^7.1.1",
     "node-sass": "^4.5.0",
+    "nodemon": "^1.11.0",
     "sass-loader": "^5.0.1",
+    "supervisor": "^0.12.0",
     "vue-loader": "^11.1.4",
     "vue-template-compiler": "^2.2.1",
     "webpack": "^2.2.0",

@@ -249,7 +249,7 @@ module.exports = function(app){
 			});
 		}
 			
-	});
+	}); 
 
 	app.get( pages.about.getUrl, function(req,res){  
 		res.render( pages.about.renderUrl, { title: '关于民投' });  
