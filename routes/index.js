@@ -8,10 +8,11 @@ let clientwebsocket = debug('app:clientwebsocket');
 let serverwebsocket = debug('app:serverwebsocket');
 let eventproxy = require('eventproxy');
 
+//.logger('index');
+
 let host = require('../config/config.js');
 
 let movie = require('./movie');
-
 
 module.exports = function(app){
 
@@ -126,7 +127,7 @@ module.exports = function(app){
 
 	app.get( pages.index.getUrl, (req,response) =>{
 
-		httpDebug('============= 平台数据 ================');		
+		//logger.info('============= 平台数据 ================');		
 			
 		//请求参数
 		var requestOptions = {

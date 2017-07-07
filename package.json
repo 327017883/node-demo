@@ -35,6 +35,7 @@
     "eventproxy": "^0.3.5",
     "file-loader": "^0.9.0",
     "glob": "^7.1.1",
+    "log4js": "^1.1.1",
     "node-sass": "^4.5.0",
     "nodemon": "^1.11.0",
     "sass-loader": "^5.0.1",

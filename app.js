@@ -1,12 +1,13 @@
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
-var logger = require('morgan');
+//var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var compression = require('compression');
 var template=require('art-template');
 var fs = require('fs'); 
+var log4js = require('log4js');
 
 var debug = require('debug')('app: app.js');
 
@@ -27,6 +28,26 @@ app.set('view engine','html');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 //app.use(logger('dev'));
+
+log4js.configure({
+  appenders: [
+    { type: 'console' }, //控制台输出
+    {
+      type: 'file', //文件输出
+      filename: 'logs/access.log', 
+      maxLogSize: 1024,
+      backups:3,
+      category: 'normal' 
+    }
+  ],
+  replaceConsole: true
+});
+
+var logger = log4js.getLogger('normal');
+logger.setLevel('INFO');
+
+app.use(log4js.connectLogger(logger, {level:'auto', format:':method :url'}));
+
 app.use(compression()); // 开启 gzip 压缩
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -172,7 +193,12 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
 
-  debug('Server running at http://127.0.0.1:' + port + ' or http://' + getIp() + ':' + port +'/');
+  debug('Server running at http://' + getIp() + ':' + port +'/');
 }
 
-module.exports = app;
+
+exports.logger=function(name){
+  var logger = log4js.getLogger(name);
+  logger.setLevel('INFO');
+  return logger;
+}
