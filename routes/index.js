@@ -10,7 +10,26 @@ let eventproxy = require('eventproxy');
 
 let host = require('../config/config.js');
 
+let movie = require('./movie');
+
+
 module.exports = function(app){
+
+	//接口
+
+	//app.get('/movie/add', movie.movieAdd);
+
+	//增加数据
+	app.post('/movie/add',movie.doMovieAdd);
+
+	//查找数据
+	app.post('/movie/query',movie.query);
+
+	//删除数据
+	app.post('/movie/del', movie.del);
+
+	//更新数据
+	app.post('/movie/update',movie.update);//JSON数据
 
 	let pages = {
 
@@ -96,6 +115,12 @@ module.exports = function(app){
 				renderUrl: 'disclosure/supervise/laws',
 				title: '法律法规'
 			}			
+		},
+		//测试使用
+		test:{
+			getUrl:'/test',
+			renderUrl:'reg/test',
+			title:'Mongoose'
 		}
 	};
 
@@ -291,4 +316,8 @@ module.exports = function(app){
 		res.render( pages.supervise.laws.renderUrl, { title: '法律法规' });  
 	});
 	
+	app.get( pages.test.getUrl, function(req,res){  
+		res.render( pages.test.renderUrl, { title: pages.test.title, staticRoot: '/views/reg/'});
+	});
+
 };  

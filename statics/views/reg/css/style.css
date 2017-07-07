@@ -1,0 +1,6 @@
+
+@import url('../../module/headInfo/css/style.css');
+
+.mongoose{ margin-top: 20px; }
+.mongoose h1{ padding-bottom: 30px; }
+.mongoose textarea{ height: 400px; width: 400px; border: #818181 1px solid; }
