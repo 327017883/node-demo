@@ -7,18 +7,18 @@ let GeneratorDebug = debug('app:Generator');
 let clientwebsocket = debug('app:clientwebsocket');
 let serverwebsocket = debug('app:serverwebsocket');
 let eventproxy = require('eventproxy');
-
-//.logger('index');
+let fs = require('fs');
 
 let host = require('../config/config.js');
 
 let movie = require('./movie');
+let Product = require('../models/product.js');
 
 module.exports = function(app){
 
 	//接口
 
-	//app.get('/movie/add', movie.movieAdd);
+	//增删查改
 
 	//增加数据
 	app.post('/movie/add',movie.doMovieAdd);
@@ -120,8 +120,20 @@ module.exports = function(app){
 		//测试使用
 		test:{
 			getUrl:'/test',
-			renderUrl:'reg/test',
-			title:'Mongoose'
+			renderUrl:'test/test',
+			title:'Mongoose',
+
+			//分页测试
+			pages: {
+				getUrl: '/test/pages',
+				renderUrl: 'test/pages',
+				title: '分页测试'
+			},
+			toPage:{
+				getUrl: '/test/pages/:page',
+				renderUrl: 'test/pages',
+				title: '分页测试'
+			}
 		}
 	};
 
@@ -277,6 +289,51 @@ module.exports = function(app){
 			
 	}); 
 
+	app.get( pages.test.pages.getUrl, function(req,res){  
+
+		//res.render( pages.test.pages.renderUrl, { title: pages.test.pages.title, staticRoot: '/views/test/'});
+		res.redirect( 302, pages.test.pages.getUrl + '/1');
+		
+	});
+
+	app.get( pages.test.toPage.getUrl, function(req,res){  
+
+		var page = +req.params.page;
+		
+		if(page == 0){
+			res.redirect( 302, pages.test.pages.getUrl + '/1');
+			return;
+		}
+
+		var options = {
+			page: page,
+			size: 10,
+			name: '',
+			start: (page-1) * 10,
+			end: (page-1) * 10 + 10
+		}
+
+		Product.findByName(options, function(err, obj){
+
+			let totalPage = Math.ceil(obj.count/options.size);
+			let arr = [];
+			for(let i = 0; i < totalPage; i++){
+				arr.push(i);
+			}
+
+			let result = {
+				title: pages.test.toPage.title, 
+				staticRoot: '/views/test/',
+				page: options.page,
+				totalPage: arr,
+				movies: obj.data
+			};
+			//console.log(options)
+			res.render( pages.test.toPage.renderUrl, result);
+		});
+		
+	});
+
 	app.get( pages.about.getUrl, function(req,res){  
 		res.render( pages.about.renderUrl, { title: '关于民投' });  
 	});
@@ -318,7 +375,8 @@ module.exports = function(app){
 	});
 	
 	app.get( pages.test.getUrl, function(req,res){  
-		res.render( pages.test.renderUrl, { title: pages.test.title, staticRoot: '/views/reg/'});
+		res.render( pages.test.renderUrl, { title: pages.test.title, staticRoot: '/views/test/'});
 	});
 
+	
 };  

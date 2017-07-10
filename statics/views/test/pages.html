@@ -1,0 +1,76 @@
+ <!doctype html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+	<title>{{ title }}</title>
+
+	<link type="text/css" href="/plugIn/bootstrap/css/bootstrap.css" rel="stylesheet">
+	<link type="text/css" href="/views/test/css/style.css" rel="stylesheet">
+	<script type="text/javascript" src="/plugIn/seajs/sea.js"></script>
+	<script type="text/javascript" src="/plugIn/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+
+{{include '../module/headInfo/index'}}
+
+<div class="bs-example g-c pages-test" data-example-id="panel-without-body-with-table">
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">test</div>
+
+      <!-- Table -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>name</th>
+            <th>类型</th>
+            <th>时间</th>
+          </tr>
+        </thead>
+        <tbody>
+         {{each movies as movie index}}
+	          <tr>
+	            <th scope="row">{{ (page-1) * 10 + index+1}}</th>
+	            <td>{{movie.name}}</td>
+	            <td>{{movie.type}}</td>
+	            <td>{{movie.transactionTime}}</td>
+	          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+<nav aria-label="Page navigation" class="g-c navigation">
+  <ul class="pagination">
+  	<li><a href="javascript:;">第 {{ page }}/{{ totalPage.length}}页</a></li>
+  	<li><a href="/test/pages/1">首页</a></li>
+
+  	{{if page >= 2}}
+    <li><a href="/test/pages/{{page - 1}}">上一页</a></li>
+    {{else}}
+    <li><a href="/test/pages/{{page}}">上一页</a></li>
+    {{/if}}
+
+  	{{each totalPage as value index}}
+  		<li> <a href="/test/pages/{{index + 1}}">{{index + 1}}</a></li>
+  	{{/each}}
+
+    {{if page < totalPage.length}}
+    	<li><a href="/test/pages/{{page + 1}}">下一页</a></li>
+    {{else}}
+    	<li><a href="/test/pages/{{page}}">下一页</a></li>
+    {{/if}}
+
+    <li><a href="/test/pages/{{ totalPage.length}}">末页</a></li>
+  </ul>
+</nav>
+
+<script type="text/javascript">
+	var staticRoot = '{{ staticRoot}}';
+</script>
+<script>seajs.use('/views/test/js/pages');</script>
+</body>
+</html>

@@ -46,7 +46,7 @@ log4js.configure({
 var logger = log4js.getLogger('normal');
 logger.setLevel('INFO');
 
-app.use(log4js.connectLogger(logger, {level:'auto', format:':method :url'}));
+//app.use(log4js.connectLogger(logger, {level:'auto', format:':method :url'}));
 
 app.use(compression()); // 开启 gzip 压缩
 app.use(bodyParser.json());
