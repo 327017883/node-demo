@@ -335,7 +335,32 @@ module.exports = function(app){
 	});
 
 	app.get( pages.about.getUrl, function(req,res){  
-		res.render( pages.about.renderUrl, { title: '关于民投' });  
+
+		
+
+		res.render( 'disclosure/about/aboutHead', { title: '关于民投' }, function(err, str){
+			res.write(str);	
+		});
+
+		// bigPipe 应用
+
+		//id 为 banner
+		res.render( 'disclosure/about/aboutBanner', { curFocus: '关于民投' }, function(err, str){
+			var str = str;
+			str = str.replace(/(\r\n|\s{3,})/g,'');
+			res.write("<script>replace('about', '"+ str +"')</script>");
+			 		
+		});
+
+		//id 为 autoCon
+		res.render( 'disclosure/about/aboutAutocon', { }, function(err, str){
+			var str = str;
+			str = str.replace(/(\r\n|\s{2,})/g,'');
+			res.write("<script>replace('autoCon', '"+ str +"')</script>");
+			res.write("</body></html>");
+			res.end();
+		});
+
 	});
 
 	app.get( pages.about.shareholder.getUrl, function(req,res){  

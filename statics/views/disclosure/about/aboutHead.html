@@ -1,0 +1,26 @@
+ <!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <title>{{ title }}</title>
+
+    <link type="text/css" href="/views/disclosure/about/css/style.css" rel="stylesheet">
+    <script type="text/javascript" src="/plugIn/seajs/sea.js"></script>
+    <script type="text/javascript" src="/plugIn/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript">
+             function replace(id, content) {
+                   var pagelet = document.getElementById(id);
+                   pagelet.innerHTML = content;
+             }
+      </script>
+</head>
+<body>
+
+{{include '../../module/headInfo/index'}}
+
+<div class="banner" id="about"></div>
+
+<div class="autoCon" id="autoCon"></div>
+
+<script>seajs.use('/views/disclosure/about/js/honors');</script>
