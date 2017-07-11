@@ -1,0 +1,26 @@
+ <!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <title>{{ title }}</title>
+
+    <link type="text/css" href="/views/uploadImg/css/style.css" rel="stylesheet">
+    <script type="text/javascript" src="/plugIn/seajs/sea.js"></script>
+    <script type="text/javascript" src="/plugIn/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+
+{{include '../module/headInfo/index'}}
+
+<form method="post" enctype="multipart/form-data" action="/uploadImg">
+
+<div class="g-c uploadImg">
+	<input type="file" name="" id='uploadImg' multiple>
+</div>
+
+</form>
+
+<script>seajs.use('/views/uploadImg/js/init');</script>
+</body>
+</html>

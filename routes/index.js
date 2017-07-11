@@ -8,6 +8,7 @@ let clientwebsocket = debug('app:clientwebsocket');
 let serverwebsocket = debug('app:serverwebsocket');
 let eventproxy = require('eventproxy');
 let fs = require('fs');
+let multiparty = require('multiparty');
 
 let host = require('../config/config.js');
 
@@ -134,6 +135,12 @@ module.exports = function(app){
 				renderUrl: 'test/pages',
 				title: '分页测试'
 			}
+		},
+		//上传图片
+		uploadImg:{
+			getUrl:'/uploadImg',
+			renderUrl: 'uploadImg/index',
+			title: '上传图片'
 		}
 	};
 
@@ -334,49 +341,30 @@ module.exports = function(app){
 		
 	});
 
-	app.get( pages.about.getUrl, function(req,res){  
-		res.render( pages.about.renderUrl, { title: '关于民投' });  
+	app.get( pages.uploadImg.getUrl, function(req,res){  
+		res.render( pages.uploadImg.renderUrl, { title: pages.uploadImg.title });  
 	});
 
-	app.get( pages.about.shareholder.getUrl, function(req,res){  
-		res.render( pages.about.shareholder.renderUrl, { title: '股东背景' });  
-	});
+	app.post('/uploadImg', function(req, res){
 
-	app.get( pages.about.team.getUrl, function(req,res){  
-		res.render( pages.about.team.renderUrl, { title: '高管团队' });  
-	});
+		var form = new multiparty.Form({
+	        encoding:"utf-8",
+	        uploadDir:"statics/upload",  //文件上传地址
+	        keepExtensions:true  //保留后缀
+	    })
+		//console.log()
 
-	app.get( pages.about.honors.getUrl, function(req,res){  
-		res.render( pages.about.honors.renderUrl, { title: '资质荣誉', staticRoot: '/views/disclosure/about/img' });  
-	});
+		var obj = [];
+	    form.parse(req, function(err, fields, files) {
+	        var file = files.file;
 
-	app.get( pages.about.contact.getUrl, function(req,res){  
-		res.render( pages.about.contact.renderUrl, { title: '联系我们', staticRoot: '/views/disclosure/about/img'  });  
-	});
+	        for(let i = 0, len = file.length; i < len; i++){
+	        	obj.push(req.headers.host + file[i].path.replace('statics', '').replace(/\\/g, '/'));
+	        }
 
-	app.get( pages.news.getUrl, function(req,res){  
-		res.render( pages.news.renderUrl, { title: '媒体报道列表页' });  
+	        res.send({success: true, data: obj});
+	    });
+	    
 	});
-
-	app.get( pages.news.noticeDetail.getUrl, function(req,res){  
-		res.render( pages.news.noticeDetail.renderUrl, { title: '媒体报道详情' });  
-	});
-
-	app.get( pages.news.reportList.getUrl, function(req,res){  
-		res.render( pages.news.reportList.renderUrl, { title: '平台公告列表页', staticRoot: '/views/disclosure/news/img'  });
-	});
-
-	app.get( pages.supervise.getUrl, function(req,res){  
-		res.render( pages.supervise.renderUrl, { title: '监管部门' });  
-	});
-
-	app.get( pages.supervise.laws.getUrl, function(req,res){  
-		res.render( pages.supervise.laws.renderUrl, { title: '法律法规' });  
-	});
-	
-	app.get( pages.test.getUrl, function(req,res){  
-		res.render( pages.test.renderUrl, { title: pages.test.title, staticRoot: '/views/test/'});
-	});
-
 	
 };  
