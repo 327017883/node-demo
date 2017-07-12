@@ -379,4 +379,15 @@ module.exports = function(app){
 	});
 
 	
-};  
+}; 
+
+var childProcess = require('child_process');
+var child = childProcess.fork('./routes/test.js');
+
+// //接受来自子进程的消息
+child.on('message', function(msg) {
+  console.log('来自子进程的消息: ', msg);
+});
+
+//发送消息给子(fork)进程
+child.send({ hello: 'zqz' });
