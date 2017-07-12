@@ -107,16 +107,35 @@ app.set('port', port);
 /**
  * Create HTTP server.
  */
+var cluster = require('cluster');
+var numCPUs = require('os').cpus().length;
+var server;
 
-var server = http.createServer(app);
+if (cluster.isMaster) {
+
+  console.log(`主进程 ${process.pid} 正在运行`);
+
+  require('os').cpus().forEach(function(){
+    cluster.fork();
+  });
+  cluster.on('exit', function(worker, code, signal) {
+    console.log('worker ' + worker.process.pid + ' died');
+  });
+  cluster.on('listening', function(worker, address) {  
+    console.log("A worker with #"+ worker.id +" is now connected to " + getIp() + ":" + address.port);
+  }); 
+} else {
+  server = http.createServer(app);
+  server.listen(port);
+  server.on('error', onError);
+  server.on('listening', onListening);
+}
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+
 
 /**
  * Normalize a port into a number, string, or false.
@@ -194,6 +213,7 @@ function onListening() {
     : 'port ' + addr.port;
 
   debug('Server running at http://' + getIp() + ':' + port +'/');
+  console.log(`工作进程 ${process.pid} 已启动`);
 }
 
 

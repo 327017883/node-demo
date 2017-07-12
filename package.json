@@ -30,6 +30,7 @@
     "babel-plugin-transform-es2015-spread": "^6.22.0",
     "babel-plugin-transform-strict-mode": "^6.24.1",
     "babel-preset-latest": "^6.0.0",
+    "cluster": "^0.7.7",
     "cross-env": "^3.0.0",
     "css-loader": "^0.25.0",
     "debug": "^2.2.0",
