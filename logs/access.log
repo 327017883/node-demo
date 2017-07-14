@@ -1,1 +1,11 @@
-[2017-07-07 15:12:17.438] [INFO] normal - GET /plugIn/bootstrap/css/bootstrap.css.map
+[2017-07-14 09:10:50.482] [INFO] normal - GET /views/disclosure/platformData/img/operation-report-bg.png
+[2017-07-14 09:10:50.485] [INFO] normal - GET /views/disclosure/platformData/img/macbook.png
+[2017-07-14 09:10:50.490] [INFO] normal - GET /views/disclosure/platformData/img/move-opacity-right.png
+[2017-07-14 09:10:50.492] [INFO] normal - GET /views/disclosure/platformData/img/move-opacity-left.png
+[2017-07-14 09:10:50.547] [INFO] normal - GET /views/disclosure/platformData/js/init.js?v=
+[2017-07-14 09:10:50.689] [INFO] normal - GET /views/disclosure/platformData/js/data-test.js?v=
+[2017-07-14 09:10:51.116] [INFO] normal - GET /views/disclosure/platformData/js/mapData.json
+[2017-07-14 09:11:16.293] [INFO] normal - GET /views/disclosure/platformData/js/dataAummary.json
+[2017-07-14 09:15:52.690] [INFO] normal - GET /views/disclosure/platformData/js/dataOperate.json
+[2017-07-14 09:15:52.700] [INFO] normal - GET /views/disclosure/platformData/js/dataAummary.json
+[2017-07-14 09:15:52.701] [INFO] normal - GET /views/disclosure/platformData/js/dataAummary.json

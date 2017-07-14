@@ -139,7 +139,7 @@ module.exports = function(app){
 
 	app.get( pages.index.getUrl, (req,response) =>{
 
-		//logger.info('============= 平台数据 ================');		
+		//logger.info('============= 平台数据 ================');
 			
 		//请求参数
 		var requestOptions = {
@@ -232,14 +232,15 @@ module.exports = function(app){
 
 			function* Generator(){
 				let returnValue = {
-					title: '平台数据'
+					title: '平台数据',
+					host: req.headers.host					
 				};
 				let optionsDataAummary = yield getDataPromise(requestOptions.optionsDataAummary);
-				GeneratorDebug(optionsDataAummary);
+				//GeneratorDebug(optionsDataAummary);
 				returnValue.dataAummary = JSON.parse(optionsDataAummary);
 
 				let optionsDataOperate = yield getDataPromise(requestOptions.optionsDataOperate);
-				GeneratorDebug(optionsDataOperate);
+				//GeneratorDebug(optionsDataOperate);
 				returnValue.dataOperate = JSON.parse(optionsDataOperate);
 
 				response.render( pages.index.renderUrl, returnValue); 
@@ -288,6 +289,72 @@ module.exports = function(app){
 		}
 			
 	}); 
+
+	//合并 静态资源js/css 请求
+	app.get( '/static??', (req, res) => {
+
+		let url = req._parsedUrl.search;
+		url = url.replace('??', '').split(',');
+
+		let host = req.headers.host;		
+
+		//let ep = new eventproxy();
+		// for(var i = 0, len = url.length; i < len; i++){
+		// 	getData('http://' + host + '/' + url[i], url[i]);
+		// }
+
+		// function getData(url, flag){
+
+		// 	http.get( url, (response) => {
+
+		// 	 	response.setEncoding('utf8');
+		// 	 	let rawData = '';
+	 //  			response.on('data', (chunk) => { rawData += chunk; });
+	 //  			response.on('end', () => {
+	 //  				ep.emit(flag, rawData);
+		// 		});
+
+		// 	}).on('error', (e) => {
+		// 		console.log(e);
+		// 	});
+		// }
+
+		// ep.all(url[0], url[1], url[2], function(data1, data2, data3){
+		// 	res.send(data1 + data2 + data3);	
+		// });
+		
+		let async = require('async');
+
+		let fnArr = [];		
+		for(let j = 0, len = url.length; j < len; j++){
+
+			fnArr[j] = function(cb){
+
+				var urlQ = 'http://' + host + '/' + url[j];
+				http.get( urlQ, (response) => {
+				 	
+				 	let rawData = '';
+		  			response.on('data', (chunk) => { rawData += chunk; });
+		  			response.on('end', () => {
+		  				cb(null, rawData);
+					});
+
+				}).on('error', (e) => {
+					console.log(e);
+				});
+			}
+		}
+
+		async.parallel( fnArr, function (err, results) { 
+
+			res.setHeader("Content-Type", "application/javascript");
+			res.setHeader("Cache-Control", "max-age=" + 10 * 365 * 24 * 60 * 60 * 1000);			
+		    res.send(results.join(";"));
+
+		});
+
+		
+	});
 
 	app.get( pages.test.pages.getUrl, function(req,res){  
 
